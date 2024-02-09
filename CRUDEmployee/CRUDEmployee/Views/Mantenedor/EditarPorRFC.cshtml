@@ -1,0 +1,45 @@
+﻿@model EmployeeModel
+@{
+    ViewData["Title"] = "EditarPorRFC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        Editar Empleado
+    </div>
+    <div class="card-body">
+        <form asp-action="EditarPorRFC" asp-controller="Mantenedor" method="post">
+            <input asp-for="ID" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input asp-for="NameEmployee" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">LastName</label>
+                <input asp-for="LastName" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">RFC</label>
+                <input asp-for="RFC" type="text" class="form-control" required pattern="[A-Z]{4}[0-9]{6}[A-Z0-9]{3}">
+                <span asp-validation-for="RFC" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">BornDate</label>
+                <input asp-for="BornDate" type="date" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select asp-for="Status" class="form-control" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="NotSet">Not Set</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Modify</button>
+            <a asp-action="Listar" asp-controller="Mantenedor" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i> Return to List</a>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@model EmployeeModel
+@{
+    ViewData["Title"] = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Crear Empleado
+    </div>
+    <div class="card-body">
+        <form asp-action="Guardar" asp-controller="Mantenedor" method="post">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input asp-for="NameEmployee" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">LastName</label>
+                <input asp-for="LastName" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">RFC</label>
+                <input asp-for="RFC" type="text" class="form-control" required pattern="[A-Z]{4}[0-9]{6}[A-Z0-9]{3}">
+                <span asp-validation-for="RFC" class="text-danger"></span> <!-- Mostrará los mensajes de error de validación del RFC -->
+            </div>
+            <div class="mb-3">
+                <label class="form-label">BornDate</label>
+                <input asp-for="BornDate" type="date" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select asp-for="Status" class="form-control" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="NotSet">Not Set</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="bi bi-folder2-open"></i> Submit</button>
+            <a asp-action="Listar" asp-controller="Mantenedor" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i> Return to List</a>
+        </form>
+    </div>
+</div>

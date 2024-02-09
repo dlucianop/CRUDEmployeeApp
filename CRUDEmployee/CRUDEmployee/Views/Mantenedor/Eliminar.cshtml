@@ -1,0 +1,22 @@
+﻿@model EmployeeModel
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Baja de Empleado
+    </div>
+    <div class="card-body">
+        <form asp-action="Eliminar" asp-controller="Mantenedor" method="post">
+            <input asp-for="ID" type="hidden" class="form-control">
+            <div class="alert alert-danger" role="alert">
+                Are you sure of this action? : @Html.DisplayTextFor(m => m.NameEmployee) ?
+            </div>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+            <a asp-action="Listar" asp-controller="Mantenedor" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i> Return to List</a>
+        </form>
+    </div>
+</div>
+

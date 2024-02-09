@@ -1,0 +1,54 @@
+﻿@model List<EmployeeModel>
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Listado de Empleados
+    </div>
+    <div class="card-body">
+        <form method="get" action="@Url.Action("Listar", "Mantenedor")">
+            <div class="mb-3">
+                <label for="nombreFiltro">Filtrar por nombre:</label>
+                <input type="text" id="nombreFiltro" name="nombreFiltro" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Filtrar</button>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>LastName</th>
+                    <th>RFC</th>
+                    <th>BornDate</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var empleado in Model)
+                {
+                    <tr>
+                        <td>@empleado.NameEmployee</td>
+                        <td>@empleado.LastName</td>
+                        <td>@empleado.RFC</td>
+                        <td>@empleado.BornDate?.ToString("yyyy-MM-dd")</td>
+                        <td>@empleado.Status</td>
+                        <td>
+                            <a asp-action="EditarPorRFC" asp-controller="Mantenedor" class="btn-secondary btn-sm" asp-route-rfc="@empleado.RFC" style="text-decoration: none;"><i class="bi bi-pencil-square"></i> Edit</a>
+                        </td>
+                        <td>
+                            <a asp-action="Eliminar" asp-controller="Mantenedor" class="btn-danger btn-sm" asp-route-rfc="@empleado.RFC" style="text-decoration: none;"><i class="bi bi-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a asp-action="Guardar" asp-controller="Mantenedor" class="btn btn-success"><i class="bi bi-plus-circle"></i> New Employee</a>
+    </div>
+</div>
